@@ -7,13 +7,28 @@
     <title>Which Doctor</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Which Doctor</h1>
-      <form id="search-form" class="form-group">
-        <label for="condition-search">Enter your condition here:</label>
-        <input id="condition-search" class="form-control" name="condition-search" type="text" required>
-        <button type="submit" class="btn">Search</button>
-      </form>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1>Which Doctor</h1>
+        <div class="container">
+          <div id="search">
+            <ul class="nav nav-tabs">
+              <li id="condition-tab" role="presentation" class="active"><a>Search by condition</a></li>
+              <li id="doctor-tab" role="presentation"><a>Search by doctor</a></li>
+            </ul>
+            <form id="condition-form" class="form-group">
+              <label for="condition-search">Enter your condition here:</label>
+              <input id="condition-search" class="form-control" name="condition-search" type="text" required>
+              <button type="submit" class="btn btn-success">Search</button>
+            </form>
+            <form id="doctor-form" class="form-group">
+              <label for="doctor-search">Enter a doctor's name here:</label>
+              <input id="doctor-search" class="form-control" name="doctor-search" type="text" required>
+              <button type="submit" class="btn btn-success">Search</button>
+            </form>
+          </div>
+      </div>
+    </div>
       <div id="results">
       </div>
     </div>

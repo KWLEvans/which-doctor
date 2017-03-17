@@ -1,0 +1,47 @@
+.result {
+  &:nth-child(even) {
+    background: {
+      color: #c7d1fc;
+    }
+  }
+  width: 100%;
+}
+
+.bio-link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.bio {
+  display: none;
+}
+
+#search {
+  width: 40%;
+  margin: {
+    top: 50px;
+    left: 40px;
+  }
+  padding: {
+    left: 20px;
+    right: 20px;
+    top: 20px;
+  }
+  border-radius: 10px;
+
+  label {
+    margin: {
+      top: 20px;
+    }
+  }
+
+  button {
+    margin: {
+      top: 20px;
+    }
+  }
+}
+
+#doctor-form {
+  display: none;
+}
