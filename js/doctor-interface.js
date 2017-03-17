@@ -9,7 +9,6 @@ $(function() {
     event.preventDefault();
 
     var condition = $("#condition-search").val();
-    console.log(condition);
     var doctor = new Doctor;
     doctor.searchByCondition(condition, logResults);
   });
