@@ -1,7 +1,7 @@
 {
   "name": "which-doctor",
   "version": "1.0.0",
-  "description": "BetterDoctors API app",
+  "description": "BetterDoctor API app",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

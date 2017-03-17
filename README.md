@@ -4,7 +4,7 @@ Where you go when something just ain't right
 
 **An app by Keith Evans**
 
-I went to the Which Doctor and this is what he said: here's an app that allows you to search local doctors to find one who can help with what ails you. Using the BetterDoctors API, you have access to a large database of providers in your area.
+I went to the Which Doctor and this is what he said: here's an app that allows you to search local doctors to find one who can help with what ails you. Using the BetterDoctor API, you have access to a large database of providers in your area.
 
 ## Installation
 

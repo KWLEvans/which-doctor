@@ -4,11 +4,18 @@
     <link rel="stylesheet" href="build/css/styles.css">
     <script src="build/js/vendor.min.js"></script>
     <script type="text/javascript" src="build/js/app.js"></script>
-    <title></title>
+    <title>Which Doctor</title>
   </head>
   <body>
     <div class="container">
-
+      <h1>Which Doctor</h1>
+      <form id="search-form" class="form-group">
+        <label for="condition-search">Enter your condition here:</label>
+        <input id="condition-search" class="form-control" name="condition-search" type="text" required>
+        <button type="submit" class="btn">Search</button>
+      </form>
+      <div id="results">
+      </div>
     </div>
   </body>
 </html>
