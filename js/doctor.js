@@ -1,7 +1,10 @@
 var apiKey = require('./../.env').apiKey;
 
 function Doctor() {
+  this.skip = 0;
+  this.total = 0;
   this.doctors = [];
+  this.url = '';
 }
 
 // Doctor.doctors is an array of objects structured as follows
@@ -16,14 +19,21 @@ function Doctor() {
 //   }]
 // }
 
+Doctor.prototype.setSkip = function(newSkip) {
+  this.skip = newSkip;
+  this.url = this.url.replace(/(.*skip=)(\d+)(\&.*)/, "$1" + newSkip + "$3");
+}
+
 Doctor.prototype.searchByCondition = function(condition, callback) {
-  var url = "https://api.betterdoctor.com/2016-03-01/doctors?query=" + encodeURI(condition) + "&location=45.5231%2C-122.6765%2C%205&user_location=45.5231%2C-122.6765&skip=0&limit=20&sort=best-match-asc&user_key=" + apiKey;
+  var url = "https://api.betterdoctor.com/2016-03-01/doctors?query=" + encodeURI(condition) + "&location=45.5231%2C-122.6765%2C%205&user_location=45.5231%2C-122.6765&skip=" + this.skip + "&limit=10&sort=best-match-desc&user_key=" + apiKey;
+  this.url = url;
 
   this.search(url, callback);
 };
 
 Doctor.prototype.searchByDoctor = function(doctor, callback) {
-  var url = "https://api.betterdoctor.com/2016-03-01/doctors?name=" + encodeURI(doctor) + "&location=45.5231%2C-122.6765%2C%205&user_location=45.5231%2C-122.6765&skip=0&limit=20&sort=best-match-desc&user_key=" + apiKey;
+  var url = "https://api.betterdoctor.com/2016-03-01/doctors?name=" + encodeURI(doctor) + "&location=45.5231%2C-122.6765%2C%205&user_location=45.5231%2C-122.6765&skip=" + this.skip + "&limit=10&sort=best-match-desc&user_key=" + apiKey;
+  this.url = url;
 
   this.search(url, callback);
 }
@@ -47,12 +57,21 @@ Doctor.prototype.search = function(url, callback) {
 };
 
 Doctor.prototype.parseResponse = function(response, callback) {
+  this.total = response.meta.total;
+  this.skip = response.meta.skip;
   var results = response.data;
   var doctors = [];
   results.forEach(function(result) {
     var profile = result.profile;
+
+    var name = profile.first_name + " ";
+    if (profile.middle_name) {
+      name += profile.middle_name + " ";
+    }
+    name += profile.last_name + " " + profile.title;
+
     var doctor = {
-      "name": profile.first_name + " " + profile.middle_name + " " + profile.last_name + " " + profile.title,
+      "name": name,
       "bio": profile.bio,
       "practices": []
     };
