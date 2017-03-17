@@ -5,7 +5,7 @@ function logResults(results) {
 }
 
 function printResults(results) {
-  if (results) {
+  if (results.total > 0) {
 
     //Build list of results
     var htmlString = "<h2>Your results</h2>";
@@ -24,8 +24,9 @@ function printResults(results) {
 
     //Create pagination if results > 10
     var pages = Math.ceil(results.total/10);
+    var pagination;
     if (pages > 1) {
-      var pagination = "<hr><nav class='text-center'><ul class='pagination'><li><a aria-label='previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+      pagination = "<hr><nav class='text-center'><ul class='pagination'><li><a aria-label='previous'><span aria-hidden='true'>&laquo;</span></a></li>";
       for (var i = 1; i <= pages; i++) {
         if (i === (results.skip/10 + 1)) {
           pagination += "<li class='active'><a>" + i + "</a></li>";
@@ -33,10 +34,12 @@ function printResults(results) {
           pagination += "<li><a>" + i + "</a></li>";
         }
       }
-      pagination += "<li><a aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li></ul></nav>"
-      htmlString += pagination;
+      pagination += "<li><a aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li></ul></nav>";
+    } else {
+      pagination = "<nav class='text-center'><ul class='pagination'><li class='active disabled'><a>1</a></li>";
     }
 
+    htmlString += pagination;
     $("#results").html(htmlString);
 
     //Add toggle for doctor bios
@@ -66,6 +69,7 @@ function printResults(results) {
 }
 
 $(function() {
+  //Functionality for swapping between search types
   $("#condition-tab, #doctor-tab").click(function() {
     if ($(this).attr('class') !== 'active') {
       $(this).addClass('active');
@@ -80,6 +84,7 @@ $(function() {
     var condition = $("#condition-search").val();
     var doctor = new Doctor();
     doctor.searchByCondition(condition, printResults);
+    $("#condition-search").val("");
   });
 
   $("#doctor-form").submit(function(event) {
@@ -88,5 +93,6 @@ $(function() {
     var name = $("#doctor-search").val();
     var doctor = new Doctor();
     doctor.searchByDoctor(name, printResults);
+    $("#doctor-search").val("");
   });
 });

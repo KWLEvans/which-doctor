@@ -4,6 +4,11 @@
       color: #c7d1fc;
     }
   }
+  &:nth-child(odd) {
+    background: {
+      color: #d7d9e2;
+    }
+  }
   width: 100%;
 }
 
@@ -14,6 +19,12 @@
 
 .bio {
   display: none;
+}
+
+.pagination {
+  li {
+    cursor: pointer;
+  }
 }
 
 #search {
