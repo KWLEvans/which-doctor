@@ -1,14 +1,14 @@
-# App Name
+# Which Doctor
 
-Catchy tagline
+Where you go when something just ain't right
 
 **An app by Keith Evans**
 
-More in depth description paragraph.
+I went to the Which Doctor and this is what he said: here's an app that allows you to search local doctors to find one who can help with what ails you. Using the BetterDoctors API, you have access to a large database of providers in your area.
 
 ## Installation
 
-Requires **npm** and **bower** installed in order to run.
+Requires **npm** installed in order to run.
 
 Step 1: **Clone this repository to your local computer**
 
